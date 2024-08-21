@@ -9,7 +9,7 @@ const generateDescription = (name: string) => {
     return `The ${name} is a tool that is used for ${name.toLowerCase()}ing.`;
 }
 
-const generateEAN = () => {
+export const generateEAN = () => {
     return Math.floor(Math.random() * 1000000000000).toString();
 }
 

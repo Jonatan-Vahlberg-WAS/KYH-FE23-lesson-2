@@ -1,53 +1,21 @@
 "use client";
-import { generateProductData } from "@/product_data";
-import _ from "lodash";
+import Products from "@/components/Products";
+import { useState } from "react";
 
-type Person = {
-    firstName: string;
-    lastName: string;
-    address: string;
-    phone: string;
-    type: "customer" | "employee"
-}
+export default function StoreState() {
+  const [store, setStore] = useState<Store>({
+    employees: [],
+    products: [],
+    address: "3637 Cedar St",
+    id: "1",
+  });
 
-type employee = Person & {
-    id: string;
-    jobTitle: string;
-    hasKeys: boolean;
-    type: "employee"
-}
-
-
-export default function Store() {
-
-    const person: Person = {
-        firstName: "John",
-        lastName: "Doe",
-        address: "123 Fake St",
-        phone: "555-555-5555",
-        type: "customer"
-    }
-
-    const employee: employee = {
-        firstName: "Jane",
-        lastName: "Doe",
-        address: "123 Fake St",
-        phone: "555-555-5555",
-        type: "employee",
-        id: "123",
-        jobTitle: "Manager",
-        hasKeys: true
-    }
-
-  
   return (
     <main>
-        <h1>Store</h1>
-      {_.times(10, () => (
-        <pre>
-          {JSON.stringify(generateProductData(), null, 2)}
-        </pre>
-      ))}
+      <h1>Store</h1>
+      <Products store={store} setStore={setStore} />
+
+      {/* //TODO: employee form */}
     </main>
   );
 }
