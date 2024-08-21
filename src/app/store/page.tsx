@@ -1,3 +1,6 @@
+"use client";
+import { generateProductData } from "@/product_data";
+import _ from "lodash";
 
 type Person = {
     firstName: string;
@@ -25,7 +28,7 @@ export default function Store() {
         type: "customer"
     }
 
-    const otherEmployee: employee = {
+    const employee: employee = {
         firstName: "Jane",
         lastName: "Doe",
         address: "123 Fake St",
@@ -39,7 +42,12 @@ export default function Store() {
   
   return (
     <main>
-      Store
+        <h1>Store</h1>
+      {_.times(10, () => (
+        <pre>
+          {JSON.stringify(generateProductData(), null, 2)}
+        </pre>
+      ))}
     </main>
   );
 }
