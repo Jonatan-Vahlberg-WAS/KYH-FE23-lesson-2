@@ -7,7 +7,6 @@ class BookKit {
 
     static async getBooksFromQuery(query: string): Promise<BookListResponse> {
         const response = await fetch(`${this.baseURL}${this.searchAppend}?q=${query}`, {
-
             headers: {
                 type: "application/json"
             }
@@ -23,6 +22,8 @@ class BookKit {
         return data
 
     }
+
+    static async getBookFromISBN(isbn: string) {}
 }
 
 export default BookKit;

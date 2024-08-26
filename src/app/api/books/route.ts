@@ -18,9 +18,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     try {
         const data = await BookKit.getBooksFromQuery(query)
 
-        return NextResponse.json({
-            books: data.docs
-        })
+        return NextResponse.json(data.docs)
     } catch(e) {
         return NextResponse.json({
             message: `No works found`

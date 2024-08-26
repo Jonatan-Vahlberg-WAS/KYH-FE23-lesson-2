@@ -1,12 +1,12 @@
 
 
 type Book = {
-    author_name: string[];
+    author_name?: string[];
     cover_i: number;
     key: string;
     first_sentence: string[];
     title: string;
-    ratings_average: number;
+    ratings_average?: number;
     first_publish_year: number;
     subject: string[];
 
