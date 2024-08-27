@@ -13,9 +13,6 @@ class WeatherKit {
 
     static async getWeatherFromCity(city: string): Promise<any> {
         const response = await fetch(`${this.baseURL}weather?q=${city}&appid=${this.getApiKeyOrThrow()}&units=metric`, {
-            headers: {
-                type: "application/json",
-            }
         })
 
         if(!response.ok) {
