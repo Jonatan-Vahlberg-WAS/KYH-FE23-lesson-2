@@ -29,7 +29,7 @@ export default function Weather({ searchParams }: PageProps) {
       className="container-fluid h-screen w-full bg-white  bg-cover bg-center"
       style={{ backgroundImage: `url(${background})` }}
     >
-      <div className="overlay bg-black bg-opacity-50 h-full w-full flex flex-col items-center justify-center gap-3">
+      <div className="overlay bg-black bg-opacity-30 h-full w-full flex flex-col items-center justify-center gap-3">
         <h1 className="text-4xl text-white">Weather</h1>
         <form className="flex flex-col items-center justify-center gap-2"
           onSubmit={(e) => {

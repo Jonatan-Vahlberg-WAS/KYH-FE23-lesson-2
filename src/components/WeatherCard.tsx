@@ -7,7 +7,7 @@ function WeatherCard({ weather, city }: WeatherCardProps) {
   // Get time from weather data dt + timezone + change from utc to local time
   const time = getTimeInLocalTime(weather?.dt, weather?.timezone);
   return (
-    <div className="card bg-white bg-opacity-60 p-3 rounded-md w-96 border-4 border-white">
+    <div className="card p-3 rounded-md w-96 border-4 border-white border-opacity-25 frosted-glass bg-cover bg-center">
       {weather && (
         <div className="card-content flex flex-col items-center gap-2">
           <h2 className="text-2xl font-bold">{weather?.name}</h2>
