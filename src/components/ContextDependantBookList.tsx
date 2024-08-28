@@ -1,6 +1,5 @@
 import { useBooks } from "@/context/books";
 import BookCard from "./Book";
-import { useEffect } from "react";
 
 function ContextDependantBookList() {
   const books = useBooks();

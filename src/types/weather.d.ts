@@ -40,6 +40,8 @@ type WeatherResponse = {
     id: number;
     name: string;
     cod: number;
+
+    // Custom properties
     iconURL: string;
     backgroundURL: string;
 }

@@ -11,7 +11,7 @@ class WeatherKit {
         return this.apiKey
     }
 
-    static async getWeatherFromCity(city: string): Promise<any> {
+    static async getWeatherFromCity(city: string): Promise<WeatherResponse> {
         const response = await fetch(`${this.baseURL}weather?q=${city}&appid=${this.getApiKeyOrThrow()}&units=metric`, {
         })
 
@@ -20,7 +20,7 @@ class WeatherKit {
             throw new Error("Unable to fetch weather")
         }
 
-        const data: any = await response.json()
+        const data: WeatherResponse = await response.json()
 
         data.iconURL = this.getWeatherIconURL(data.weather[0].icon)
         data.backgroundURL = this.getWeatherBackgroundURL(data.weather[0].main)

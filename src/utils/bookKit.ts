@@ -6,11 +6,7 @@ class BookKit {
     static searchAppend = "search.json"
 
     static async getBooksFromQuery(query: string): Promise<BookListResponse> {
-        const response = await fetch(`${this.baseURL}${this.searchAppend}?q=${query}`, {
-            // headers: {
-            //     // type: "application/json",
-            // }
-        })
+        const response = await fetch(`${this.baseURL}${this.searchAppend}?q=${query}`)
 
         if(!response.ok) {
             console.log("ERROR: fetching books", response)

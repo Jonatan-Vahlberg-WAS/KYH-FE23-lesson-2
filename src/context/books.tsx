@@ -6,18 +6,20 @@ import { createContext, PropsWithChildren, useContext, useEffect, useState } fro
 type BookState = {
     books: Book[];
 
-    getBooks: (query:string) => void
+    getBooks: (query:string) => void,
+    resetBooks: () => void
 }
 
 const defaultState: BookState = {
     books: [],
-    getBooks: () => {}
+    getBooks: () => {},
+    resetBooks: () => {}
 }
 
 const BookContext = createContext<BookState>(defaultState)
 
 function BookProvider({children}: PropsWithChildren) {
-    const [books, setBooks] = useState<Book[]>([])
+    const [books, setBooks] = useState<Book[]>(defaultState.books)
 
     useEffect(() => {
         getBooks("alice in wonder")
@@ -41,9 +43,14 @@ function BookProvider({children}: PropsWithChildren) {
         .catch(error => console.warn(error))
     }
 
+    function resetBooks() {
+        setBooks(defaultState.books)
+    }
+
     return <BookContext.Provider value={{
         books,
-        getBooks
+        getBooks,
+        resetBooks
     }}>
         {children}
     </BookContext.Provider>
