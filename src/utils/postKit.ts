@@ -1,19 +1,4 @@
-import { getDetailData, getListData } from "./apiKit";
-
-type Post = {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-};
-
-type PostComment = {
-  id: number;
-  postId: number;
-  name: string;
-  email: string;
-  body: string;
-};
+import { deleteData, getDetailData, getListData, postData, putData } from "./apiKit";
 
 async function getPosts() {
     try {
@@ -35,22 +20,51 @@ async function getPost(id: number) {
   }
 }
 
-async function getComments() {
-  try {
-    const comments = await getListData<PostComment>(
-      "https://jsonplaceholder.typicode.com/comments"
-    );
-    return comments;
-  } catch (error) {
-    console.log("ERROR: fetching comments", error);
-  }
+
+
+async function postPost(data: PostData) {
+    try {
+        const newPost = await postData<Post>(`https://jsonplaceholder.typicode.com/posts/`, data)
+        return newPost
+    } catch (error) {
+        console.log("ERROR: creating post")
+    }
 }
 
-async function getComment(id: number) {
+async function putPost(data: Post) {
     try {
-      const comment = getDetailData<Comment>(`https://jsonplaceholder.typicode.com/comments/${id}`)
-      return comment
+        const updatedPost = await putData<Post>(`https://jsonplaceholder.typicode.com/posts/${data.id}`, data)
+        return updatedPost
     } catch (error) {
-      console.log("ERROR: fetching comment");
+        console.log("ERROR: updating post")
+    }
+}
+
+async function deletePost(id: number) {
+    try {
+        const newPost = await deleteData(`https://jsonplaceholder.typicode.com/posts/${id}`)
+        return newPost
+    } catch (error) {
+        console.log("ERROR: deleting post")
+    }
+}
+
+async function getComments() {
+    try {
+      const comments = await getListData<PostComment>(
+        "https://jsonplaceholder.typicode.com/comments"
+      );
+      return comments;
+    } catch (error) {
+      console.log("ERROR: fetching comments", error);
     }
   }
+  
+  async function getComment(id: number) {
+      try {
+        const comment = getDetailData<Comment>(`https://jsonplaceholder.typicode.com/comments/${id}`)
+        return comment
+      } catch (error) {
+        console.log("ERROR: fetching comment");
+      }
+    }

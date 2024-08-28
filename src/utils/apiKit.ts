@@ -26,8 +26,39 @@ export async function getDetailData<T>(url: string): Promise<T> {
 }
   
  
-//TODO: create postData function taking url, and data as any returning T
+export async function postData<T>(url: string, data: any): Promise<T>{
+    const response = await fetch(url,{
+        method: "Post",
+        body: JSON.stringify(data)
+    })
+    if (!response.ok) {
+        throw new Error("Failed creating data");
+    }
 
-//TODO: create putData fucntion taking url, and data as any returning T
+    const newData = await response.json();
+    return newData as T
+}
 
-//TODO: create deleteData function taking url and returning nothing
+export async function putData<T>(url: string, data: any): Promise<T>{
+    const response = await fetch(url,{
+        method: "PUT",
+        body: JSON.stringify(data)
+    })
+    if (!response.ok) {
+        throw new Error("Failed updating data");
+    }
+
+    const updatedData = await response.json();
+    return updatedData as T
+}
+
+export async function deleteData(url: string): Promise<void>{
+    const response = await fetch(url,{
+        method: "DELETE"
+    })
+    if (response.status !== 204) {
+        throw new Error("Failed deleting data");
+    }
+    
+    return
+}
